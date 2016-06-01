@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ $# -ne 2 ] ; then
+    echo "pgpool_remote_start remote_host remote_datadir"
+    exit 1
+fi
+
+DEST=$1
+DESTDIR=$2
+
+ssh postgres@$DEST -o "VerifyHostKeyDNS no" -o "StrictHostKeyChecking no" 'sudo /etc/init.d/postgresql-9.4 start > /dev/null'
